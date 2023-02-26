@@ -164,10 +164,18 @@ class AdressBook(UserDict): #адресна книга
     def add_record(self, record: Record):
         self.data[record.name.value] = record
 
-    def iterator(self):
+    def generator(self):
         for name, info in self.data:
             yield color(f"{name} has phone {info}",Colors.green)
 
+    
+    def iterator(self, value):
+        value = value
+        gen = self.generator()
+        while value > 0:
+            print(next(gen))
+            value -= 1
+            
 
 
 

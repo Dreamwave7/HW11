@@ -192,6 +192,7 @@ class AdressBook(UserDict): #адресна книга
 
 
 
+#ПЕРЕВИРКА СКРИПТА
 name = Name("Dima")
 phone = Phone("0993796625")
 birth = Birthday("2001.08.12")
@@ -199,4 +200,12 @@ rec = Record(name, phone, birth)
 ad = AdressBook()
 ad.add_record(rec)
 
-print(ad.iterator(1))
+
+name1 = Name("Benderovec")
+phone1 = Phone("0993790447")
+birth1 = Birthday("2401.08.12")
+rec1 = Record(name1, phone1, birth1)
+
+ad.add_record(rec1)
+
+print(ad.iterator(2))

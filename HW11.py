@@ -185,6 +185,7 @@ class AdressBook(UserDict): #адресна книга
             except StopIteration:
                 print(color(f"Try enter value less than {value}. Dict has {len(self.data)} contacts",Colors.purple))
                 return ""
+        return color("Thats all!",Colors.orange)
             
 
 
@@ -198,4 +199,4 @@ rec = Record(name, phone, birth)
 ad = AdressBook()
 ad.add_record(rec)
 
-print(ad.iterator(6))
+print(ad.iterator(1))

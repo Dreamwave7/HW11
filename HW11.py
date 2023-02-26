@@ -154,8 +154,8 @@ class Record:   #клас для запису инфи
         except ValueError:
             print(color("You set wrong date. Try again set new date in format YYYY.MM.DD", Colors.red))
             return ""
-
-        
+    def __repr__(self) -> str:
+        return f"{self.phone}, Birthday - {self.birthday}"
 
     
 
@@ -165,21 +165,27 @@ class AdressBook(UserDict): #адресна книга
         self.data[record.name.value] = record
 
     def generator(self):
-        for name, info in self.data:
+        for name, info in self.data.items():
             yield color(f"{name} has phone {info}",Colors.green)
 
     
     def iterator(self, value):
         value = value
         gen = self.generator()
+        try:
+            if value > len(self.data):
+                raise Error
+        except:
+            print(color("You set big value, list has less users. Try again.\n", Colors.red))
+
         while value > 0:
-            print(next(gen))
-            value -= 1
+            try:
+                print(next(gen))
+                value -= 1
+            except StopIteration:
+                print(color(f"Try enter value less than {value}. Dict has {len(self.data)} contacts",Colors.purple))
+                return ""
             
-
-
-
-
 
 
 
@@ -187,7 +193,9 @@ class AdressBook(UserDict): #адресна книга
 
 name = Name("Dima")
 phone = Phone("0993796625")
-birth = Birthday("2001.08.11")
+birth = Birthday("2001.08.12")
 rec = Record(name, phone, birth)
+ad = AdressBook()
+ad.add_record(rec)
 
-print(rec.days_to_birthday())
+print(ad.iterator(6))
